@@ -1,0 +1,27 @@
+from datetime import datetime
+
+def calculate_age(b_d):
+    today = datetime.today()
+    age = today.year - b_d.year
+    
+    if (today.month, today.day) < (b_d.month, b_d.day):
+        age -= 1
+    
+    return age
+
+def get_b_d():
+    while True:
+        user_input = input("Введите вашу дату рождения (дд.мм.гггг): ")
+        try:
+            b_d = datetime.strptime(user_input, "%d.%m.%Y")
+            return b_d
+        except ValueError:
+            print("Неверный формат даты. Пожалуйста, попробуйте снова.")
+
+def main():
+    b_d = get_b_d()
+    age = calculate_age(b_d)
+    print(f"Ваш возраст: {age} лет(года).")
+
+if __name__ == "__main__":
+    main()
