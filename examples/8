@@ -1,0 +1,6 @@
+def outer(out_param7, out_param8):
+    def inner(in_param7, in_param8):
+        return in_param7 + in_param8
+    return inner(out_param7, out_param8)
+
+print(outer(9,10))
