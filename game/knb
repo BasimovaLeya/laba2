@@ -1,0 +1,43 @@
+import random
+
+def get_robot_choice():
+    return random.choice(['камень', 'ножницы', 'бумага'])
+
+def get_user_choice():
+    while True:
+        user_input = input("Введите 'камень', 'ножницы' или 'бумага': ").lower()
+        if user_input in ['камень', 'ножницы', 'бумага']:
+            return user_input
+        else:
+            print("Неверный ввод. Попробуйте еще раз.")
+
+def determine_winner(user, robot):
+    if user == robot:
+        return "Ничья!"
+    elif (user == 'камень' and robot == 'ножницы') or \
+         (user == 'ножницы' and robot == 'бумага') or \
+         (user == 'бумага' and robot == 'камень'):
+        return "Вы победили!"
+    else:
+        return "Вы проиграли:("
+
+def play_game():
+    print("Поехали!")
+    
+    while True:
+        user_choice = get_user_choice()
+        robot_choice = get_robot_choice()
+        
+        print(f"Вы выбрали: {user_choice}")
+        print(f"Робот выбрал: {robot_choice}")
+        
+        result = determine_winner(user_choice, robot_choice)
+        print(result)
+        
+        play_again = input("Хотите сыграть еще раз? (да/нет): ").lower()
+        if play_again != 'да':
+            print("Спасибо за игру!")
+            break
+
+if __name__ == "__main__":
+    play_game()
